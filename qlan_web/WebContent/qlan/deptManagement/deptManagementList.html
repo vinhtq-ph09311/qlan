@@ -1,0 +1,173 @@
+
+
+<div data-ng-controller="deptManagementController as vm"
+	style="width: 100%; display: flex" kendo-validator="validator" k-options="vm.validatorOptions" >
+	<!-- tree -->
+	<div style="width: 18%; border: 3px #33cccc solid;"
+		class="portlet light ">
+		<div class="portlet-title background-title">
+			<div class="caption">
+				<span class="caption-subject bold lowercase" translate>Cây
+					phòng ban </span>
+			</div>
+			<div class="text-right margin-row-title">
+				<i data-toggle="collapse" data-target="#treeview"
+					class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+
+			</div>
+		</div>
+
+
+		<div id="treeview" class="collapse in"
+			style="text-align: left; color: black; font-weight: Bold;"
+			kendo-tree-view="vm.treeView" 
+			k-options="vm.treeViewOptions"
+			k-on-change="vm.doSearchByTree(dataItem)"
+			k-on-change="vm.onGridChange(kendoEvent, { selected: selected }, data)">
+		</div>
+	</div>
+
+	<div style="width: 82%">
+
+		<div >
+			<form class="form-horizontal row" role="form"
+				>
+				<div class="form-body">
+					<div class="portlet light bordered">
+						<div class="portlet-title background-title">
+							<div class="caption">
+								<span class="caption-subject bold lowercase" translate>Thông
+									tin tìm kiếm</span>
+							</div>
+							<div class="text-right margin-row-title">
+								<i data-toggle="collapse" data-target="#demodeptManagement"
+									class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+							</div>
+						</div>
+						<div id="demodeptManagement" class="collapse in from-search">
+							<div class="clearfix">
+								<div class="form-group col-md-6">
+									<label class="col-md-4 control-label" translate>Mã
+										phòng ban</label>
+									<div class="col-md-8">
+										<input class=" form-control width100" type="text" 
+										name="search_deptCode"
+										id="search_deptCode"
+										
+											has-html
+											 special-character
+											 	input-max-textLength
+										data-inputMaxtextlength="100"
+										
+										
+											ng-model="vm.deptManagementSearch.deptCode"
+										/>
+									
+								
+									</div>
+									
+									
+								</div>
+								<div class="form-group col-md-6">
+									<label class="col-md-4 control-label" translate>Tên
+										phòng ban</label>
+									<div class="col-md-8">
+										<input class=" form-control width100" type="text"
+											name="search_deptName"
+										id="search_deptName"
+											has-html
+											 special-character
+											 	input-max-textLength
+							data-inputMaxtextlength="100"
+											ng-model="vm.deptManagementSearch.deptName" />
+											 
+									</div>
+								</div>
+							</div>
+
+							<div class="clearfix">
+								<div class="form-group col-md-6">
+									<label class="col-md-4 control-label" translate>Trạng
+										thái</label>
+									<div class="col-md-8">
+										<select kendo-drop-down-list="applySelect"
+											class="form-control" k-options="vm.statusSelectOptions"
+											id="deptmanagement_search_status" style="width: 100%"
+											name="deptmanagement_search_status"
+											ng-model="vm.deptManagementSearch.status">
+										</select>
+									</div>
+
+								</div>
+							</div>
+							<div class="clearfix form-actions margin-top">
+								<div class="row">
+									<div class="col-md-12 text-center">
+										<button type="submit" id="findParam" ng-click="vm.doSearch()"
+											class="btn btn-qlk padding-search-right searchQLK" translate>Tìm
+											kiếm</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		
+		
+		<!-- Danh sách phòng ban  -->
+		<div class="portlet light bordered">
+			<div class="portlet-title background-title">
+				<div class="caption">
+					<span class="caption-subject bold lowercase" translate>Danh
+						sách đơn vị cha </span>  &nbsp;<label
+						class="control-label bold lowercase" ng-bind="vm.count"></label><label
+						class="control-label bold lowercase">&nbsp;bản ghi</label>
+				</div>
+				<div class="text-right margin-row-title">
+					<i data-toggle="collapse" data-target="#demodeptManagementGrid"
+						class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+
+				</div>
+			</div>
+			<div id="demodeptManagementGrid" class="collapse in ">
+				<div class=" margin_top_button"></div>
+				<div id="deptManagementGrid" kendo-grid="vm.deptManagementGrid"
+					k-editable="false" k-options="vm.gridOptions"
+					k-on-change="vm.onGridChange(kendoEvent, { selected: selected }, data)"></div>
+			</div>
+		</div>
+		
+		
+		<!-- Phòng ban trực thuộc  -->
+		<div class="portlet light bordered" >
+			<div class="portlet-title background-title">
+				<div class="caption">
+					<span class="caption-subject bold lowercase" translate>Danh
+						sách đơn vị trực thuộc phòng ban : </span> <span style="color: red">{{
+						vm.deptManagementShowParentdeptName}} </span> &nbsp;<label
+						class="control-label bold lowercase" ng-bind="vm.countChildren"></label><label
+						class="control-label bold lowercase">&nbsp;bản ghi</label>
+				</div>
+				<div class="text-right margin-row-title">
+					<i data-toggle="collapse"
+						data-target="#demodeptManagementGridChildren"
+						class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+
+				</div>
+			</div>
+			<div id="demodeptManagementGridChildren" class="collapse in ">
+				<div class=" margin_top_button"></div>
+				<div id="deptManagementGridChildren"
+					kendo-grid="vm.deptManagementGridChildren" k-editable="false"
+					k-options="vm.gridOptionsChildren"
+					k-on-change="vm.onGridChange(kendoEvent, { selected: selected }, data)"></div>
+			</div>
+		</div>
+
+
+
+	</div>
+
+</div>

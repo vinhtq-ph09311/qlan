@@ -1,0 +1,190 @@
+
+
+<div data-ng-controller="areaManagementController as vm"
+	style="width: 100%; display: flex" kendo-validator="validator"
+	k-options="vm.validatorOptions">
+	
+	<!-- tree Cây đơn vị-->
+	<div style="width: 18%; border: 3px #33cccc solid;"
+		class="portlet light ">
+		<div class="portlet-title background-title">
+			<div class="caption">
+				<span class="caption-subject bold lowercase" translate>Cây đơn vị </span>
+			</div>
+			
+			<div class="text-right margin-row-title">
+				<i data-toggle="collapse" data-target="#treeview"
+					class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+
+			</div>
+		</div>
+		
+		<!-- 
+			kendo-tree-view="vm.treeView" ==> lấy ra danh sách dạng cây 
+			k-options="vm.treeViewOptions" ==> dữ liệu đổ ra (id và areaName)
+			k-on-change="vm.doSearchByTree(dataItem) ==>  khi có click vào đơn vị trên cây => thực hiện tìm kiếm  theo đơn vị đó
+		-->
+ 
+		<div id="treeview" class="collapse in"
+			style="text-align: left; color: black; font-weight: Bold;"
+			kendo-tree-view="vm.treeView" k-options="vm.treeViewOptions"
+			k-on-change="vm.doSearchByTree(dataItem)">
+		</div>
+	</div>
+
+	<div style="width: 82%">
+
+		<div>
+			<form class="form-horizontal row" role="form">
+				<div class="form-body">
+					<div class="portlet light bordered">
+						<div class="portlet-title background-title">
+							<div class="caption">
+								<span class="caption-subject bold lowercase" translate>Thông
+									tin tìm kiếm</span>
+							</div>
+							<div class="text-right margin-row-title">
+								<i data-toggle="collapse" data-target="#demoareaManagement"
+									class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+							</div>
+						</div>
+						
+				<!-- has-html, special-character, ... 1 số directive xử lý validate ở trong file app.kendoConfig.js -->
+				
+				<!-- Thông tin tìm kiếm được lưu vào vm.areaManagementSearch -->
+						
+						<div id="demoareaManagement" class="collapse in from-search">
+							<div class="clearfix">
+								<div class="form-group col-md-6">
+									<label class="col-md-4 control-label" translate>Mã đơn vị</label>
+									<div class="col-md-8">
+										<input class=" form-control width100" type="text"
+											name="search_areaCode" id="search_areaCode" has-html
+											special-character input-max-textLength
+											data-inputMaxtextlength="100"
+											ng-model="vm.areaManagementSearch.areaCode" />
+
+
+									</div>
+
+								</div>
+								
+								<div class="form-group col-md-6">
+									<label class="col-md-4 control-label" translate>Tên đơn
+										vị</label>
+									<div class="col-md-8">
+										<input class=" form-control width100" type="text"
+											name="search_areaName" id="search_areaName" has-html
+											special-character input-max-textLength
+											data-inputMaxtextlength="100"
+											ng-model="vm.areaManagementSearch.areaName" />
+
+									</div>
+								</div>
+							</div>
+
+							<!-- Trường trạng thái (status):
+									Sử dụng kendo-drop-down-list
+									k-options="vm.statusSelectOptions" ==> Dữ liệu được đổ ra hoặc dùng kendoDropDownList
+							 -->
+							<div class="clearfix">
+								<div class="form-group col-md-6">
+									<label class="col-md-4 control-label" translate>Trạng
+										thái</label>
+									<div class="col-md-8">
+										<select kendo-drop-down-list="applySelect"
+											class="form-control" k-options="vm.statusSelectOptions"
+											id="areamanagement_search_status" style="width: 100%"
+											name="areamanagement_search_status"
+											ng-model="vm.areaManagementSearch.status">
+										</select>
+									</div>
+
+								</div>
+							</div>
+							<div class="clearfix form-actions margin-top">
+								<div class="row">
+									<div class="col-md-12 text-center">
+										<button type="submit" id="findParam" ng-click="vm.doSearch()"
+											class="btn btn-qlk padding-search-right searchQLK" translate>Tìm
+											kiếm</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+
+		<!-- Danh sách đơn vị  -->
+		<div class="portlet light bordered">
+			<div class="portlet-title background-title">
+				<div class="caption">
+					<span class="caption-subject bold lowercase" translate>Danh
+						sách đơn vị cha: </span> &nbsp;<label class="control-label bold lowercase"
+						ng-bind="vm.count"></label><label
+						class="control-label bold lowercase">&nbsp;bản ghi</label>
+				</div>
+				<div class="text-right margin-row-title">
+					<i data-toggle="collapse" data-target="#demoareaManagementGrid"
+						class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+
+				</div>
+			</div>
+			
+			<!-- sử dụng kendo-grid để xuất ra bảng
+				Đơn vị cha: kendo-grid="vm.areaManagementGrid"
+				vm.areaManagementGrid lưu đầy đủ các thông tin, dữ liệu của table
+				k-options="vm.gridOptions" xuất ra dữ liệu, teamplate ... của table
+				k-editable="false" không thể sửa (true có thể sửa )
+				
+			  -->
+			
+			<div id="demoareaManagementGrid" class="collapse in ">
+				<div class=" margin_top_button"></div>
+				<div id="areaManagementGrid" kendo-grid="vm.areaManagementGrid"
+					k-editable="false" k-options="vm.gridOptions"
+					k-on-change="vm.onGridChange(kendoEvent, { selected: selected }, data)"></div>
+			</div>
+		</div>
+
+
+		<div class="portlet light bordered">
+			<div class="portlet-title background-title">
+				<div class="caption">
+					<span class="caption-subject bold lowercase" translate>Danh
+						sách đơn vị trực thuộc của đơn vị :</span> &nbsp;<label
+						class="control-label bold lowercase" ng-bind="vm.countChildren"></label><label
+						class="control-label bold lowercase">&nbsp;bản ghi</label>
+				</div>
+				<div class="text-right margin-row-title">
+					<i data-toggle="collapse"
+						data-target="#demoareaManagementGridChildren"
+						class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+
+				</div>
+			</div>
+			
+				<!-- sử dụng kendo-grid để xuất ra bảng
+				Đơn vị cha: kendo-grid="vm.areaManagementGrid"
+				vm.areaManagementGridChildren lưu đầy đủ các thông tin, dữ liệu của table
+				k-options="vm.gridOptionsChildren" xuất ra dữ liệu, teamplate ... của table 
+				k-editable="false" không thể sửa (true có thể sửa )
+				-->
+			
+			<div id="demoareaManagementGridChildren" class="collapse in ">
+				<div class=" margin_top_button"></div>
+				<div id="areaManagementGridChildren"
+					kendo-grid="vm.areaManagementGridChildren" k-editable="false"
+					k-options="vm.gridOptionsChildren"
+					k-on-change="vm.onGridChange(kendoEvent, { selected: selected }, data)"></div>
+			</div>
+		</div>
+
+
+
+	</div>
+
+</div>

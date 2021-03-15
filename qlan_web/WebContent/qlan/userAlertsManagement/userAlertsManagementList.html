@@ -1,0 +1,111 @@
+
+<div data-ng-controller="userAlertsManagementController as vm">
+	<div ng-show="vm.showSearch">
+		<form class="form-horizontal row" role="form">
+			<div class="form-body">
+				<div class="portlet light bordered">
+					<div class="portlet-title background-title">
+						<div class="caption">
+							<span class="caption-subject bold lowercase" translate>Thông
+								tin tìm kiếm</span>
+						</div>
+						<div class="text-right margin-row-title">
+							<i data-toggle="collapse" data-target="#demousersManagement"
+								class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+						</div>
+					</div>
+					<div id="demousersManagement" class="collapse in from-search">
+						<div class="clearfix">
+							<div class="form-group col-md-6">
+								<label class="col-md-4 control-label" translate>Mã người dùng</label>
+								<div class="col-md-8">
+									<input class=" form-control width100" type="text" autofocus
+										ng-model="vm.userAlertsManagementSearch.staffCode" />
+								</div>
+							</div>
+							<div class="form-group col-md-6">
+								<label class="col-md-4 control-label" translate>Số điện thoại</label>
+								<div class="col-md-8">
+									<input class=" form-control width100" type="text"
+										ng-model="vm.userAlertsManagementSearch.tel" />
+								</div>
+							</div>
+						</div>
+						<div class="clearfix">
+							<div class="form-group col-md-6">
+								<label class="col-md-4 control-label" translate>Tên</label>
+								<div class="col-md-8">
+									<input class=" form-control width100" type="text"
+										ng-model="vm.userAlertsManagementSearch.name" />
+								</div>
+							</div>
+							<div class="form-group col-md-6">
+								<label class="col-md-4 control-label " translate>Phòng ban</label>
+								<div class="col-md-8">
+									<select kendo-drop-down-list="applySelect1" class="form-control" 
+										 k-options="vm.optDept"
+										style="width: 100%" name="userAlertsmanagement_search_dept"
+										ng-model="vm.userAlertsManagementSearch.deptId" >
+									</select> 
+								</div>
+						</div>
+						<div class="clearfix">
+							<div class="form-group col-md-6">
+								<label class="col-md-4 control-label" translate>Trạng
+									thái</label>
+								<div class="col-md-8">
+									<select kendo-drop-down-list="applySelect2" class="form-control"  k-options="vm.statusSelectOptions"
+										style="width: 100%" name="userAlertsmanagement_search_status"
+										ng-model="vm.userAlertsManagementSearch.status">
+									</select>
+								</div>
+							</div>
+							<div class="form-group col-md-6">
+								<label class="col-md-4 control-label" translate>Mức độ cảnh báo</label>
+								<div class="col-md-8">
+									<select kendo-drop-down-list="applySelect3" class="form-control"  k-options="vm.warningSelectOption"
+										style="width: 100%" name="userAlertsmanagement_search_warning"
+										ng-model="vm.userAlertsManagementSearch.warningLevel">
+									</select>
+								</div>
+								
+							</div>
+							
+						</div>
+						
+						<div class="clearfix form-actions margin-top">
+							<div class="row">
+								<div class="col-md-12 text-center">
+									<button type="button" id="findParam" ng-click="vm.doSearch()"
+										class="btn btn-qlk padding-search-right searchQLK" translate>Tìm
+										kiếm</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="portlet light bordered">
+		<div class="portlet-title background-title">
+			<div class="caption">
+				<span class="caption-subject bold lowercase" translate>Kết
+					quả tìm kiếm: </span>&nbsp;<label class="control-label bold lowercase"
+					ng-bind="vm.count"></label><label
+					class="control-label bold lowercase">&nbsp;bản ghi</label>
+			</div>
+			<div class="text-right margin-row-title">
+				<i data-toggle="collapse" data-target="#demouserAlertsManagementGrid"
+					class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+
+			</div>
+		</div>
+		<div id="demouserAlertsManagementGrid" class="collapse in ">
+			<div class=" margin_top_button"></div>
+			<div id="vm.userAlertsManagementGrid" kendo-grid="vm.userAlertsManagementGrid"
+				k-editable="false" k-options="vm.gridOptionsUserAlerts"
+				k-on-change="vm.onGridChange(kendoEvent, { selected: selected }, data)"></div>
+		</div>
+	</div>
+</div>

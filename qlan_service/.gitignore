@@ -1,0 +1,7 @@
+
+target/**
+.settings/**
+build.xml
+.classpath
+/.settings/
+/target/

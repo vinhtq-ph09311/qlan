@@ -1,0 +1,10 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Feb 18 11:32:42 ICT 2021
+file\:///${project.parent.basedir}/ext-lib/.lastUpdated=1494481068836
+http\://repo.maven.apache.org/maven2/.lastUpdated=1481464997083
+https\://repo.maven.apache.org/maven2/.lastUpdated=1613622762461
+@default-local-maven-repo-../${project.parent.basedir}/ext-lib/.lastUpdated=1494481217591
+http\://repo.maven.apache.org/maven2/.error=
+../${project.parent.basedir}/ext-lib/.error=Could not transfer artifact espringtran\:espringtran.compressor4j\:pom\:1.0.0 from/to local-maven-repo (../${project.parent.basedir}/ext-lib)\: Cannot access ../${project.parent.basedir}/ext-lib with type default using the available connector factories\: AetherRepositoryConnectorFactory, BasicRepositoryConnectorFactory
+https\://repo.maven.apache.org/maven2/.error=
+file\:///${project.parent.basedir}/ext-lib/.error=

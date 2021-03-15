@@ -1,0 +1,124 @@
+<form class="form-horizontal row" role="form" name="deptManagement"
+	id="deptManagement"  
+	 kendo-validator="validator" k-options="validatorOptions"
+	>
+
+	<!-- 	
+ -->
+	<p></p>
+	<div class="portlet-title">
+		<div class="caption">
+			<span class="caption-subject bold lowercase" translate>Thông
+				tin chung</span>
+		</div>
+	</div>
+	<div class="portlet light bordered">
+		<p></p>
+		<div class="clearfix">
+			<div class="form-group col-md-6">
+				<label class="col-md-4 control-label req" translate>Mã phòng
+					ban</label>
+				<div class="col-md-8">
+					<input class=" form-control width100" type="text" 
+						ng-disabled="caller.isCreateNew"
+				
+			required
+			data-required-msg="Mã phòng ban không được để trống"
+				input-max-textLength
+							data-inputMaxtextlength="100"
+				  special-character-code
+						 special-character
+						 has-white-space
+						has-html	
+							
+						id="creater_deptName" name="creater_deptName" 
+						
+						ng-model="caller.deptManagementCreate.deptCode" /> 
+				</div>
+				<!-- 
+				
+					
+					 -->
+			</div>
+
+			<div class="form-group col-md-6">
+				<label class="col-md-4 control-label req" translate>Tên
+					phòng ban</label>
+				<div class="col-md-8">
+					<input class=" form-control width100" type="text"
+						id="creater_fullName" name="creater_fullName" 
+						required
+						data-required-msg="Tên phòng ban không được để trống"
+						special-character 
+							has-html
+						input-max-textLength
+							data-inputMaxtextlength="100"	
+							
+						ng-model="caller.deptManagementCreate.deptName" /> 
+				</div>
+
+				<!-- 
+					
+					
+					
+				 -->
+			</div>
+
+		</div>
+
+
+
+		<div class="clearfix">
+
+			<auto-search model-label="Phòng ban cha" caller="caller"
+				model-disable="caller.isCreateParentNew"
+				header-template="caller.headerTemplate"
+				template-auto="caller.template" page="1" page-size="20"
+				popup-type="grid" combo-id="deptmanagement_create_dept"
+				combo-source-link="deptService/dept/getListDeptAutoSearch"
+				combo-name="deptName" 
+				combo-value="deptId"
+				combo-search="caller.commonSearch"
+				model-id="caller.deptManagementCreate.parentDeptId"
+				model-name="caller.deptManagementCreate.parentDeptName">
+			</auto-search>
+
+
+			<div class="form-group col-md-6">
+				<label class="col-md-4 control-label req" translate>Trạng
+					thái</label>
+				<div class="col-md-8">
+					<select kendo-drop-down-list class="form-control"
+						id="create_statuss" k-options="caller.statusSelectOptions"
+						style="width: 100%" name="create_status"
+					required data-required-msg="Xin mời chọn trạng thái"
+						ng-model="caller.deptManagementCreate.status">
+					
+					</select>
+					
+					<!-- 	
+					
+						  -->
+				
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+		<div class="clearfix">
+			<div class="portlet light " align="right">
+				<button type="submit"
+					class="btn btn-qlk padding-search-right saveQLK"  ng-click="save()"
+					translate>Ghi lại</button>
+				<button type="button"
+					class="btn btn-qlk padding-search-right closeQLK" id="cancel"
+					ng-click="caller.cancel()" translate>Hủy bỏ</button>
+
+			</div>
+		</div>
+</form>

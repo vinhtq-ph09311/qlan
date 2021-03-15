@@ -1,0 +1,90 @@
+<form class="form-horizontal row" role="form" name="areaManagement"
+	id="areaManagement" kendo-validator="validator"
+	k-options="validatorOptions">
+
+	<!-- 	
+ -->
+	<p></p>
+	<div class="portlet-title">
+		<div class="caption">
+			<span class="caption-subject bold lowercase" translate>Thông
+				tin chung</span>
+		</div>
+	</div>
+	<div class="portlet light bordered">
+		<p></p>
+		<div class="clearfix">
+			<div class="form-group col-md-6">
+				<label class="col-md-4 control-label req" translate>Mã đơn
+					vị</label>
+				<div class="col-md-8">
+					<input class=" form-control width100" type="text"
+						ng-disabled="caller.isCreateNew" required
+						data-required-msg="Mã đơn vị không được để trống"
+						input-max-textLength data-inputMaxtextlength="100"
+						special-character-code special-character has-white-space has-html
+						id="creater_areaCode" name="creater_areaCode"
+						ng-model="caller.areaManagementCreate.areaCode" />
+				</div>
+				<!-- 
+				
+					
+					 -->
+			</div>
+
+			<div class="form-group col-md-6">
+				<label class="col-md-4 control-label req" translate>Tên đơn
+					vị</label>
+				<div class="col-md-8">
+					<input class=" form-control width100" type="text"
+						id="creater_areaName" name="creater_areaName" required
+						data-required-msg="Tên đơn vị không được để trống"
+						special-character has-html input-max-textLength
+						data-inputMaxtextlength="100"
+						ng-model="caller.areaManagementCreate.areaName" />
+				</div>
+			</div>
+
+		</div>
+
+		<div class="clearfix">
+
+			<auto-search model-label="Đơn vị cha" caller="caller"
+				
+				model-disable="caller.isCreateParentNew"
+				header-template="caller.headerTemplate"
+				template-auto="caller.template" page="1" page-size="20"
+				popup-type="grid" combo-id="areamanagement_create_area"
+				combo-source-link="areaServiceRest/area/getListAreaAutoSearch"
+				combo-name="areaName" combo-value="id"
+				combo-search="caller.commonSearch"
+				model-id="caller.areaManagementCreate.parentId"
+				model-name="caller.areaManagementCreate.parentName"> </auto-search>
+
+
+			<div class="form-group col-md-6">
+				<label class="col-md-4 control-label req" translate>Trạng thái</label>
+				<div class="col-md-8">
+					<select kendo-drop-down-list class="form-control"
+						id="create_status" k-options="caller.statusSelectOptions"
+						style="width: 100%" name="create_status" required
+						data-required-msg="Xin mời chọn trạng thái"
+						ng-model="caller.areaManagementCreate.status">
+
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="clearfix">
+			<div class="portlet light " align="right">
+				<button type="submit"
+					class="btn btn-qlk padding-search-right saveQLK" ng-click="save()"
+					translate>Ghi lại</button>
+				<button type="button"
+					class="btn btn-qlk padding-search-right closeQLK" id="cancel"
+					ng-click="caller.cancel()" translate>Hủy bỏ</button>
+
+			</div>
+		</div>
+</form>

@@ -1,0 +1,128 @@
+<form class="form-horizontal row" role="form" name="usersManagement"
+	id="usersManagement" kendo-validator="validator" k-options="validatorOptions">
+	<p></p>
+	<div class="portlet-title">
+		<div class="caption">
+			<span class="caption-subject bold lowercase" translate>Thông
+				tin chung</span>
+		</div>
+	</div>
+	<div class="portlet light bordered">
+		<p></p>
+		<div class="clearfix">
+			<div class="form-group col-md-6">
+				<label class="col-md-4 control-label req" translate>Mã chức năng</label>
+				<div class="col-md-8">
+					<input class=" form-control width100" type="text" required special-character-code special-character max-length
+						data-required-msg="Mã chức năng không được để trống" id="creater_objectCode"
+						name="creater_objectCode" ng-model="caller.objectManagementCreate.objectCode" /> <span
+						data-for="creater_objectCode" class="k-invalid-msg"></span>
+				</div>
+			</div>
+			
+
+			<div class="form-group col-md-6">
+				<label class="col-md-4 control-label req" translate>Tên chức năng</label>
+				<div class="col-md-8">
+					<input class=" form-control width100" type="text" required max-length special-character
+						data-required-msg="Tên chức năng không được để trống" id="creater_objectName"
+						name="creater_objectName" ng-model="caller.objectManagementCreate.objectName" /> <span
+						data-for="creater_objectName" class="k-invalid-msg"></span>
+				</div>
+			</div>
+
+		</div>
+		
+		<div class="clearfix">
+			<div class="form-group col-md-6">
+				<label class="col-md-4 control-label" translate>Chức năng cha</label>
+				<div class="col-md-8">
+					<select kendo-drop-down-list class="form-control" id="create_parent" k-options="caller.parentSelectOptions"
+						style="width: 100%" name="create_parent"
+						ng-model="caller.objectManagementCreate.parentId" >
+					</select> 
+					
+				</div>
+			</div>
+			
+			<div class="form-group col-md-6">
+				<label class="col-md-4 control-label req" translate>Đường dẫn</label>
+				<div class="col-md-8">
+					<input class=" form-control width100" type="text" required  has-white-space
+						data-required-msg="Không để trống đường dẫn" id="create_objectUrl"
+						name="create_objectUrl" ng-model="caller.objectManagementCreate.objectUrl" /> <span
+						data-for="create_objectUrl" class="k-invalid-msg"></span>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="clearfix">
+
+			<div class="form-group col-md-6">
+				<label class="col-md-4 control-label" translate>Thứ tự </label>
+				<div class="col-md-8">
+					<input class=" form-control width100" type="text"  id="create_ord" validate-number special-character
+						name="create_ord" ng-model="caller.objectManagementCreate.ord" /><span
+						data-for="create_ord" "></span>
+				</div>
+			</div>
+			
+			<div class="form-group col-md-6">
+				<label class="col-md-4 control-label req" translate>Loại chức năng</label>
+				<div class="col-md-8">
+					<select kendo-drop-down-list class="form-control" id="create_objectType" k-options="caller.objectTypeSelectOptions"
+						style="width: 100%" name="create_objectType" required data-required-msg="Loại chức năng không được để trống"
+						ng-model="caller.objectManagementCreate.objectTypeId" >
+					</select> 
+					<span
+						data-for="create_objectType" class="k-invalid-msg"></span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="clearfix">
+		
+			<div class="form-group col-md-6">
+				<label class="col-md-4 control-label " translate>Mô tả</label>
+				<div class="col-md-8">
+					<textarea  rows="4" cols="10" class=" form-control width100" type="text"  
+						 id="description"
+						name="description" ng-model="caller.objectManagementCreate.description" /> <span
+						data-for="description" class="k-invalid-msg"></span>
+				</div>
+			</div>
+				<div class="form-group col-md-6">
+				<label class="col-md-4 control-label req" translate>Trạng thái</label>
+				<div class="col-md-8">
+					<select kendo-drop-down-list class="form-control" id="create_status" k-options="caller.statusSelectOptions"
+						style="width: 100%" name="create_status" required data-required-msg="Trạng thái không được để trống"
+						ng-model="caller.objectManagementCreate.status" >
+					</select> 
+					<span
+						data-for="create_status" class="k-invalid-msg"></span>
+				</div>
+			</div>
+			</div>
+			
+	</div>
+		
+	<div class="clearfix">
+		<div class="portlet light" align="center">
+		
+		<button type="button"
+				class="btn btn-qlk padding-search-right saveQLK" ng-click="save()"ng-hide="!caller.isCreateNew" 
+				translate>Thêm mới</button>
+				
+		<button type="button"
+				class="btn btn-qlk padding-search-right saveQLK" ng-click="save()" ng-hide="caller.isCreateNew" 
+				translate>Cập nhật</button>
+	
+		
+			<button type="button"
+				class="btn btn-qlk padding-search-right closeQLK" id="cancel"
+				ng-click="cancel()" translate>Hủy bỏ</button>
+			
+		</div>
+	</div>
+</form>

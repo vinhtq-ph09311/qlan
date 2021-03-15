@@ -1,0 +1,125 @@
+<form class="form-horizontal row" role="form" name="userAlertsManagement"
+	id="userAlertsManagement" kendo-validator="validator" k-options="validatorOptions">
+	<p></p>
+	<div class="portlet-title">
+		<div class="caption">
+			<span class="caption-subject bold lowercase" translate>Thông
+				tin chung</span>
+		</div>
+	</div>
+	<div class="portlet light bordered">
+		<p></p>
+		<div class="clearfix">
+			<div class="form-group col-md-6">
+				<label class="col-md-4 control-label req" translate>Mã người dùng</label>
+				<div class="col-md-8">
+					<input class=" form-control width100" type="text" required 
+						input-max-textLength 
+						data-inputMaxtextlength="100" 
+				  		special-character-code 
+						special-character 
+						has-white-space 
+						has-html 
+						data-required-msg="Mã người dùng không được để trống" 
+						id="creater_staffCode" name="creater_staffCode"
+						ng-model="caller.userAlertsManagementCreate.staffCode" /> <span
+						data-for="creater_staffCode" class="k-invalid-msg"></span>
+				</div>
+			</div>
+
+			<div class="form-group col-md-6">
+				<label class="col-md-4 control-label req" translate>Tên
+					người dùng</label>
+				<div class="col-md-8">
+					<input class=" form-control width100" type="text" required 
+						special-character 
+						has-html 
+						input-max-textLength 
+						data-inputMaxtextlength="100" 
+						data-required-msg="Tên người dùng không được để trống" 
+						id="creater_fullName"
+						name="creater_name" ng-model="caller.userAlertsManagementCreate.name" /> <span
+						data-for="creater_name" class="k-invalid-msg"></span>
+				</div>
+			</div>
+
+		</div>
+		<div class="clearfix">
+			<div class="form-group col-md-6">
+				<label class="col-md-4 control-label req" translate>Phòng ban</label>
+				<div class="col-md-8">
+					<select kendo-drop-down-list class="form-control" 
+						id="create_dept" k-options="caller.optDeptCreate"
+						style="width: 100%" name="create_dept" required
+						data-required-msg="Phòng ban không được để trống"
+						ng-model="caller.userAlertsManagementCreate.deptId" >
+					</select> 
+					<span
+						data-for="create_dept" class="k-invalid-msg"></span>
+				</div>
+			</div>
+			
+			<div class="form-group col-md-6">
+				<label class="col-md-4 control-label req" translate>Số điện thoại</label>
+				<div class="col-md-8">
+					<input class=" form-control width100" type="text"  id="cteate_tel" phone-number required data-required-msg="Số điện thoại không được để trống"
+						name="create_tel" ng-model="caller.userAlertsManagementCreate.tel" />
+						<span
+						data-for="cteate_tel" class="k-invalid-msg"></span>
+				</div>
+			</div>
+				
+	
+		</div>
+		<div class="clearfix">
+		<div class="form-group col-md-6">
+				<label class="col-md-4 control-label " translate>Email</label>
+				<div class="col-md-8">
+					<input class=" form-control width100" type="text"  id="create_email"   
+						data-required-msg="Email không được để trống"
+						name="create_email" ng-model="caller.userAlertsManagementCreate.email" /><span
+						data-for="create_email" class="k-invalid-msg"></span>
+				</div>
+			</div>
+			<div class="form-group col-md-6">
+				<label class="col-md-4 control-label req" translate>Trạng thái</label>
+				<div class="col-md-8">
+					<select kendo-drop-down-list class="form-control" 
+						id="create_status" k-options="caller.statusSelectOptions"
+						style="width: 100%" name="create_status" required 
+						data-required-msg="Trạng thái không được để trống"
+						ng-model="caller.userAlertsManagementCreate.status" >
+					</select> 
+					
+				</div>
+			</div>
+		</div>
+		<div class="clearfix">
+			<div class="form-group col-md-6">
+				<label class="col-md-4 control-label req" translate>Mức độ cảnh báo</label>
+				<div class="col-md-8">
+					<select kendo-drop-down-list class="form-control" 
+						id="create_warningLevel" k-options="caller.warningSelectOptionsCreate"
+						style="width: 100%" name="create_warningLevel" required
+						data-required-msg="Mức độ cảnh báo không được để trống"
+						ng-model="caller.userAlertsManagementCreate.warningLevel" >
+					</select> 
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix">
+	<div class="portlet light" align="center">
+			<button type="button"
+					class="btn btn-qlk padding-search-right saveQLK" ng-click="save(caller.userAlertsManagementCreate)" ng-hide="!caller.isCreateNew" 
+					translate>Ghi lại</button>
+			<button type="button"
+					class="btn btn-qlk padding-search-right saveQLK" ng-click="save(caller.userAlertsManagementCreate)" ng-hide="caller.isCreateNew" 
+					translate>Cập nhật</button>
+			<button type="button"
+				class="btn btn-qlk padding-search-right closeQLK" id="cancel"
+				ng-click="cancel()" translate>Hủy bỏ</button>
+		</div>
+	</div>
+		
+</form>
